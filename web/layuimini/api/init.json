@@ -1,0 +1,127 @@
+{
+  "homeInfo": {
+    "title": "首页",
+    "href": "page/welcome.jsp"
+  },
+  "logoInfo": {
+    "title": "后台管理",
+    "image": "images/logo.png",
+    "href": ""
+  },
+  "menuInfo": [
+    {
+      "title": "常规管理",
+      "icon": "fa fa-address-book",
+      "href": "",
+      "target": "_self",
+      "child": [
+        {
+          "title": "主页模板",
+          "href": "",
+          "icon": "fa fa-home",
+          "target": "_self",
+          "child": [         
+          ]
+        },
+        {
+          "title": "用户信息管理",
+          "href": "",
+          "icon": "fa fa-file-text",
+          "target": "_self",
+          "child": [            
+            {
+              "title": "用户信息",
+              "href": "page/user_list.jsp",
+              "icon": "fa fa-list-alt",
+              "target": "_self"
+            },
+            {
+              "title": "评论信息",
+              "href": "page/comment_list.jsp",
+              "icon": "fa fa-navicon",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "歌曲信息管理",
+          "href": "",
+          "icon": "fa fa-file-text",
+          "target": "_self",
+          "child": [
+            {
+              "title": "歌曲管理",
+              "href": "page/song_list.jsp",
+              "icon": "fa fa-list-alt",
+              "target": "_self"
+            }
+          ]
+        },
+
+        {
+          "title": "歌手信息管理",
+          "href": "",
+          "icon": "fa fa-file-text",
+          "target": "_self",
+          "child": [
+            {
+              "title": "歌手管理",
+              "href": "page/singer_list.jsp",
+              "icon": "fa fa-list-alt",
+              "target": "_self"
+            }
+          ]
+        },
+
+        {
+          "title": "专辑信息管理",
+          "href": "",
+          "icon": "fa fa-file-text",
+          "target": "_self",
+          "child": [
+            {
+              "title": "专辑管理",
+              "href": "page/cd_list.jsp",
+              "icon": "fa fa-list-alt",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "MV",
+          "href": "",
+          "icon": "fa fa-file-text",
+          "target": "_self",
+          "child": [
+            {
+              "title": "添加MV",
+              "href": "page/video_add.jsp",
+              "icon": "fa fa-list-alt",
+              "target": "_self"
+            },
+            {
+              "title": "MV管理",
+              "href": "page/video_list.jsp",
+              "icon": "fa fa-list-alt",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "登录模板",
+          "href": "",
+          "icon": "fa fa-flag-o",
+          "target": "_self",
+          "child": [            
+            {
+              "title": "登录",
+              "href": "page/login-2.jsp",
+              "icon": "fa fa-viacoin",
+              "target": "_blank"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

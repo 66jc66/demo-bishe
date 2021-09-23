@@ -1,0 +1,761 @@
+@CHARSET "UTF-8";
+html,body{
+    margin:0;
+    padding:0;
+    height:100%;
+    position:relative;
+    overflow:hidden;
+}
+.header{
+    width:100%;
+    height:70px;
+    background:rgba(24,24,24,0.9);
+    display:flex;
+    flex-flow:row;
+    justify-content:center;
+}
+/* 顶部导航栏，发现音乐、我的音乐、动态、音乐人、搜索框、登录按钮 */
+.index_header{
+    width:auto;
+    height:70px;
+    background:rgba(24,24,24,0);
+    float:left;
+    display:flex;
+    flex-flow:row;
+    justify-content:center;
+    margin:0 auto;
+}
+/* LOGO */
+.LOGO{
+    height:70px;
+    width:150px;
+    color:#fff;
+    text-align:center;
+    color:#fff;
+    font-size:22px;
+    line-height:70px;
+    float:left;
+    margin-right:10px;
+    float:left;
+}
+.LOGO img{
+    width:40px;
+    height:40px;
+    border-radius:20px;
+    background:#fff;
+}
+.LOGO span{
+    height:70px;
+    display:inline-block;
+    width:100px;
+}
+/* 发现音乐、我的音乐、动态、音乐人 */
+.index_header_nav{
+    height:70px;
+    width:400px;
+    float:left;
+    margin-right:10px;
+    position:relative;
+    float:left;
+}
+.index_header_nav input{
+    position:absolute;
+    width:100px;
+    height:70px;
+    margin:0;
+    padding:0;
+    opacity:0;
+}
+.index_header_nav input:nth-child(1){
+    left:0;
+}
+.index_header_nav input:nth-child(3){
+    left:100px;
+}
+.index_header_nav input:nth-child(5){
+    left:200px;
+}
+.index_header_nav input:nth-child(7){
+    left:300px;
+}
+.index_header_nav input:checked+a{
+    background:#000;
+    color:#fff;
+}
+.index_header_nav a{
+    position:absolute;
+    width:100px;
+    height:70px;
+    margin:0;
+    padding:0;
+    color:#DEDEDE;
+    font-size:16px;
+    text-align:center;
+    line-height:70px;
+    transition:all 0.3s;
+    text-decoration:none;
+    overflow:hidden;
+}
+.index_header_nav a:after{
+    content:"";
+    position:absolute;
+    width:0;
+    height:0;
+    bottom:-16px;
+    border:8px solid;
+    border-color:#000 #000 #D81E06 #000;
+    left:50%;
+    margin-left:-4px;
+    transition:all 0.3s;
+}
+.index_header_nav input:checked+a:after{
+    bottom:1px;
+}
+.index_header_nav a:hover{
+    background:#000;
+    color:#fff;
+}
+.index_header_nav a:nth-child(2){
+    left:0;
+}
+.index_header_nav a:nth-child(4){
+    left:100px;
+}
+.index_header_nav a:nth-child(6){
+    left:200px;
+}
+.index_header_nav a:nth-child(8){
+    left:300px;
+}
+/* 搜索框 */
+.index_header_seek{
+    height:70px;
+    width:300px;
+    float:left;
+    text-align:center;
+    margin-right:10px;
+    float:left;
+}
+.index_header_seek input:nth-child(1){
+    height:30px;
+    width:180px;
+    border-radius:5px 0 0 5px;
+    border:0;
+    padding-left:5px;
+}
+
+.index_header_seek input:nth-child(2){
+    height:32px;
+    width:50px;
+    border-radius:0 5px 5px 0;
+    border:0;
+    background:#D81E06;
+    color:#fff;
+}
+.index_header_seek input:nth-child(1):focus,
+.index_header_seek input:nth-child(2):focus{
+    outline:none;
+    border:0;
+}
+.index_header_seek form{
+    height:70px;
+    display:flex;
+    flex-flow:row;
+    justify-content:center;
+    align-items:center;
+}
+/* 登录前“登录按钮”， 登录后显示用户名及相关菜单 */
+.index_header_login{
+    position:relative;
+    height:70px;
+    width:100px;
+    float:left;
+    line-height:70px;
+    color:#666;
+    font-size:16px;
+}
+
+/*.index_header_login:after{*/
+/*    content:"";*/
+/*    position:absolute;*/
+/*    width:0;*/
+/*    height:0;*/
+/*    border:8px solid;*/
+/*    border-color:#666 rgba(0,0,0,0) rgba(0,0,0,0) rgba(0,0,0,0);*/
+/*    top:50%;*/
+/*    margin-top:-4px;*/
+/*    right:0;*/
+
+/*}*/
+.dropdown{
+    position: relative;
+    display: inline-block;
+}
+.login_way{
+    display:none;
+    width:180px;
+    height:auto;
+    background:#444;
+    position:absolute;
+    top:70px;
+    left:-40px;
+    border-radius:0 0 5px 5px;
+    box-shadow:0 0 12px #444;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    padding: 12px 16px;
+}
+.dropdown:hover .login_way {
+    display: block;
+}
+.login_way p,
+.login_way a{
+    width:180px;
+    height:35px;
+    margin:0;
+    color:#ccc;
+    line-height:35px;
+    font-size:14px;
+    border-radius:5px;
+    border-bottom:1px solid #000;
+    transition:all 0.3s;
+}
+.login_way a{
+    display:block;
+    text-align:center;
+    text-decoration:none;
+}
+.login_way p:hover,
+.login_yet p:hover{
+    background:#666;
+    color:#fff;
+    cursor:pointer;
+}
+.login_way img{
+    margin-left:15px;
+    margin-right:15px;
+}
+.clear{
+    clear:both;
+}
+.header_a1_little_menu{
+
+    width:100%;
+    height:35px;
+    background:#D81E06;
+    display:flex;
+    flex-flow:row;
+    justify-content:center;
+}
+.header_a1_little_menu>div{
+    position:relative;
+    height:35px;
+    width:auto;
+    left:-265px;
+}
+.header_a1_little_menu input{
+    position:absolute;
+    width:50px;
+    height:22px;
+    margin:0;
+    border-radius:11px;
+    top:50%;
+    margin-top:-11px;
+}
+.header_a1_little_menu a{
+    position:absolute;
+    width:50px;
+    height:22px;
+    background:#D81E06;
+    color:#fff;
+    border-radius:11px;
+    text-align:center;
+    line-height:22px;
+    font-size:12px;
+    top:50%;
+    margin-top:-11px;
+    transition:all 0.3s;
+}
+.header_a1_little_menu a:hover{
+    background:#9B0909;
+}
+.header_a1_little_menu input:checked+a{
+    background:#9B0909;
+}
+.header_a1_little_menu input:nth-child(1){
+    left:0;
+}
+.header_a1_little_menu a:nth-child(2){
+    left:0;
+}
+.header_a1_little_menu input:nth-child(3){
+    left:70px;
+}
+.header_a1_little_menu a:nth-child(4){
+    left:70px;
+}
+.header_a1_little_menu input:nth-child(5){
+    left:140px;
+}
+.header_a1_little_menu a:nth-child(6){
+    left:140px;
+}
+.header_a1_little_menu input:nth-child(7){
+    left:210px;
+}
+.header_a1_little_menu a:nth-child(8){
+    left:210px;
+}
+.index_iframe{
+    width:100%;
+    height:auto;
+    padding:0;
+    margin:0;
+    border:0;
+    background:#F5F5F5;
+    overflow:auto;
+
+}
+.phone_login{
+    display:none;
+    position:absolute;
+    z-index:1000;
+    width:500px;
+    height:300px;
+    background:#fff;
+    top:200px;
+    left:50%;
+    margin-left:-250px;
+    box-shadow:0 0 12px #444;
+    border-radius:5px;
+    overflow:hidden;
+}
+.phone_login_header{
+    width:485px;
+    height:35px;
+    background:#2D2D2D;
+    color:#fff;
+    line-height:35px;
+    padding-left:15px;
+}
+.none_login{
+    float:right;
+    margin-right:15px;
+    font-size:22px;
+    transform:rotate(45deg);
+}
+.none_login:hover{
+    cursor:pointer;
+}
+.phone_login_form{
+    width:500px;
+    height:225px;
+    background:#fff;
+}
+.phone_login_form input{
+    display:block;
+    width:245px;
+    height:30px;
+    margin: 0 auto;
+    margin-top:20px;
+    border:1px solid silver;
+    border-radius:5px;
+    padding-left:5px;
+}
+.phone_login_form input:focus{
+    outline:none;
+}
+.phone_login_form input:nth-child(3){
+    width:250px;
+    height:32px;
+    background:#3080CC;
+    color:#fff;
+    border:0;
+}
+.phone_login_foot{
+    position:absolute;
+    width:485px;
+    height:39px;
+    padding-left:15px;
+    border-top:1px solid #333;
+    background:silver;
+    bottom:0;
+    line-height:39px;
+}
+.change_login_way{
+    font-size:14px;
+    color:#D81E06;
+    font-weight:600;
+}
+.change_login_way:hover,
+.regist_span:hover{
+    cursor:pointer;
+}
+.regist_span{
+    margin-right:15px;
+    float:right;
+    font-size:14px;
+    color:#444;
+    text-decoration:underline;
+}
+/*首页低端，也是音乐播放控制台*/
+.index_footer{
+    opacity: 0.8;
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    background: red;
+    bottom: 0;
+    transition: all 0.3s;
+    line-height: 50px;
+}
+#songPlay_name{
+    position: absolute;
+    left: 200px;
+    color: white;
+    width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.audio_div audio{
+    position: absolute;
+    left: 50%;
+    top: 5px;
+    opacity: 1;
+    display: block;
+    width: 800px;
+    height: 40px;
+
+    margin: 0 auto;
+    margin-left: -400px;
+}
+
+
+
+
+
+
+
+/*音乐播放器的css样式*/
+.page {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+}
+
+.page::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: -30px;
+    z-index: -1;
+    content: '';
+    background: url(/index/images/0.jpg) no-repeat;
+    background-size:100% 100%;
+    filter: blur(20px);
+}
+
+.main {
+    margin: 0 auto 0 auto;
+    width: 70%;
+    height: 90%;
+}
+
+.main .Lbox {
+    width: 50%;
+    height: 100%;
+    text-align: center;
+    display: inline-block;
+}
+
+.main .Lbox img {
+    margin: 100px 0 40px 0;
+    width: 260px;
+    height: 260px;
+    border-radius: 10px;
+}
+
+.main .Lbox .download {
+    width: 220px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 30px;
+    border: 2px #666 solid
+}
+
+.main .Rbox {
+    padding-top: 60px;
+    width: 50%;
+    height: 100%;
+    color: rgba(79, 72, 67, 0.9);
+    font-weight: bold;
+    text-align: center;
+}
+
+.main .Rbox h2 {
+    font-size: 22px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.main .Rbox span {
+    font-size: 18px;
+    margin: 10px 0 10px 0;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.main .Rbox .Lyric {
+    width: 100%;
+    height: 70%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.main .Rbox .Lyric::-webkit-scrollbar {
+    width: 10px;
+    height: 1px;
+}
+
+.main .Rbox .Lyric::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.main .Rbox .Lyric::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.main .Rbox p {
+    font-size: 16px;
+    margin: 8px 0 8px 0;
+}
+
+.footer {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.footer span {
+    color: #bababa;
+}
+
+.footer .main div {
+    display: inline-block;
+}
+
+.footer .main {
+    width: 80%;
+    height: 10%;
+    text-align: center;
+    margin: 0 auto 0 auto;
+}
+
+.footer .main .left .iconfont {
+    line-height: 200%;
+    font-size: 34px;
+}
+
+.footer .main .left .Iconfont {
+    line-height: 150%;
+    font-size: 42px;
+}
+
+.footer .main .right {
+    position: relative;
+}
+
+.footer .main .right span {
+    width: 32px;
+    height: 32px;
+}
+
+.footer .main .right .list {
+    padding-top: 10px;
+    position: absolute;
+    top: -230px;
+    right: -35px;
+    border-radius: 5px;
+    overflow-y: auto;
+    width: 200px;
+    height: 210px;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.footer .main .right .list::-webkit-scrollbar {
+    width: 8px;
+    height: 1px;
+}
+
+.footer .main .right .list::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+    background: #808080;
+}
+
+.footer .main .right .list::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background: #d9d9d9;
+}
+
+.footer .main .right .listTriangle {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    border-left: 35px solid transparent;
+    border-right: 35px solid transparent;
+    border-top: 35px solid rgba(0, 0, 0, 0.6);
+;
+}
+
+.footer .main .right .gengduoBox {
+    position: absolute;
+    top: -65px;
+    right: -14px;
+    width: 60px;
+    height: 60px;
+    background-color: rgba(0, 0, 0, 0.6);
+;
+    border-radius: 5px;
+}
+
+.footer .main .right .boxTriangle {
+    position: absolute;
+    bottom: -15px;
+    right: 15px;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid rgba(0, 0, 0, 0.6);
+}
+
+.footer .main .right .list span {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.6);
+    padding: 4px 0 4px 0;
+    width: auto;
+    height: 30px;
+}
+
+.footer .main .right .list .Song {
+    width: 92%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.footer .main .right .list .Song p {
+    border-bottom: 2px rgba(0, 0, 0, 0.5) dotted;
+}
+
+.footer .main .right .list .Song .delete {
+    color: #BABABA;
+}
+
+.footer .main .right .iconfont {
+    line-height: 200%;
+    font-size: 30px;
+}
+
+.footer .main .right .icon-xihuan2 {
+    color: #e31422;
+}
+
+.footer .main .content {
+    position: relative;
+}
+
+.footer .main .content img {
+    margin: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.footer .main .content .iconfont {
+    line-height: 425%;
+    font-size: 20px;
+}
+
+.footer .main .content .strip {
+    position: relative;
+    width: 400px;
+    height: 12px;
+    border: 1px #666666 solid;
+    border-radius: 10px;
+}
+
+.footer .main .content .strip .progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #BABABA;
+    width: 0;
+    height: 10px;
+    border: 1px #666666 solid;
+    border-radius: 10px;
+}
+
+.footer .main .content .strip .spot {
+    position: absolute;
+    top: -3px;
+    left: -10px;
+    background-color: rgb(255, 255, 255);
+    width: 15px;
+    height: 15px;
+    border: 1px #666666 solid;
+    border-radius: 50%;
+}
+
+.footer .main .content .volumeBox {
+    padding-top: 10px;
+    position: absolute;
+    top: -90px;
+    right: -5px;
+    width: 30px;
+    height: 105px;
+    background-color: #808080;
+}
+
+.footer .main .content .triangle {
+    position: absolute;
+    bottom: -11px;
+    right: 7px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 12px solid #808080;
+}
+
+.footer .main .content .volumeBox .groove {
+    width: 4px;
+    height: 80px;
+    background-color: #464646;
+}
+
+.footer .main .content .volumeBox .groove .volume {
+    position: absolute;
+    bottom: 15px;
+    right: 13px;
+    width: 4px;
+    height: 80px;
+    background-color: #34a8a4;
+}
+
+.footer .main .content .volumeBox .groove .volumeSpot {
+    position: absolute;
+    bottom: 85px;
+    right: 9px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgb(255, 255, 255);
+}
