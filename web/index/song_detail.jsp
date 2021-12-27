@@ -87,7 +87,14 @@
                                 <source  src="/songurl/${song.songUrl}" type="audio/mp3">
                             </audio>
                         </td>
-                        <td><img onclick="load('${song.songName}','${song.songUrl}')" src="images/down.jpg" style="width: 20px;height: 20px"></td>
+                        <td>
+                            <c:if test="${sessionScope.indexUser==null}">
+                            <img onclick="songdown()" src="images/down.jpg" style="width: 20px;height: 20px"></td>
+                        </c:if>
+                        <c:if test="${sessionScope.indexUser!=null}">
+                            <img onclick="load('${song.songName}','${song.songUrl}')" src="images/down.jpg" style="width: 20px;height: 20px"></td>
+                        </c:if>
+                        </td>
                     </tr>
 
                 </table>
@@ -113,7 +120,13 @@
                         <img src="images/user.jpg" style="float: left;width: 50px;height: 50px">
                         <li class="text">${com.users.username}:${com.comtext}</li>
                         <li class="time">评论时间：${com.comtime}
-                            <img onclick="comdelete('${com.comtime}',${song.sid})" src="images/delete.jpg" style="padding-left: 300px">
+                            <c:if test="${sessionScope.indexUser!=null}">
+                                <img onclick="comdelete('${com.comtime}',${song.sid})" src="images/delete.jpg"
+                                     style="padding-left: 300px">
+                            </c:if>
+                            <c:if test="${sessionScope.indexUser==null}">
+                                <img onclick="comtip()" src="images/delete.jpg" style="padding-left: 300px">
+                            </c:if>
                         </li>
 
                     </div>
@@ -128,7 +141,12 @@
     function songcomment() {
         alert("请先登录后，再进行评论");
     }
-
+    function songdown() {
+        alert("请先登录后，再进行下载");
+    }
+    function comtip() {
+        alert("请先登录后，再进行操作");
+    }
     function songcom(uid, sid) {
         var comtext = $("#songlist_comment_textarea").val();
         $.ajax({
@@ -202,6 +220,9 @@
                }
                if(obj==201){
                    alert("文件不存在，下载失败")
+               }
+                if(obj==202){
+                   alert("文件已经存在，不用重复下载")
                }
            }
        });

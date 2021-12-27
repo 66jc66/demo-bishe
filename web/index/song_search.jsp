@@ -50,7 +50,7 @@
                 </div>
                 <div class="music_right_header_songlist_info">
                     <p>
-                        <img  src="${pageContext.request.contextPath}/index/images/play.jpg" height="25" width="25"><a
+                        <img src="${pageContext.request.contextPath}/index/images/play.jpg" height="25" width="25"><a
                             href="javascript:void(0);" onclick="songplay(${song.sid})">播放</a>
                     </p>
                 </div>
@@ -78,7 +78,15 @@
                                 <source src="/songurl/${song.songUrl}" type="audio/mp3">
                             </audio>
                         </td>
-                        <td><img onclick="load('${song.songName}','${song.songUrl}')" src="images/down.jpg" style="width: 20px;height: 20px"></td>
+                        <td>
+                            <c:if test="${sessionScope.indexUser==null}">
+                            <img onclick="songdown()" src="images/down.jpg" style="width: 20px;height: 20px"></td>
+                        </c:if>
+                        <c:if test="${sessionScope.indexUser!=null}">
+                            <img onclick="load('${song.songName}','${song.songUrl}')" src="images/down.jpg"
+                                 style="width: 20px;height: 20px"></td>
+                        </c:if>
+
                     </tr>
 
                 </table>
@@ -89,10 +97,12 @@
                      width="50" height="50"/>
                 <textarea id="songlist_comment_textarea" placeholder="评论" rows="4" cols="85"></textarea>
                 <c:if test="${sessionScope.indexUser!=null}">
-                    <button id="comment_submit" type="button" onclick="songcom(${sessionScope.indexUser.uid},${song.sid})" >评论</button>
+                    <button id="comment_submit" type="button"
+                            onclick="songcom(${sessionScope.indexUser.uid},${song.sid})">评论
+                    </button>
                 </c:if>
                 <c:if test="${sessionScope.indexUser==null}">
-                    <button  id="comment_submit"  type="button" onclick="songcomment()" >评论</button>
+                    <button id="comment_submit" type="button" onclick="songcomment()">评论</button>
                 </c:if>
             </div>
             <c:forEach items="${comList}" var="com" varStatus="co">
@@ -101,7 +111,14 @@
                         <img src="images/user.jpg" style="float: left;width: 50px;height: 50px">
                         <li class="text">${com.users.username}:${com.comtext}</li>
                         <li class="time">评论时间：${com.comtime}
-                            <img onclick="comdelete('${com.comtime}',${song.sid})" src="images/delete.jpg" style="padding-left: 300px">
+                            <c:if test="${sessionScope.indexUser!=null}">
+                                <img onclick="comdelete('${com.comtime}',${song.sid})" src="images/delete.jpg"
+                                     style="padding-left: 300px">
+                            </c:if>
+                            <c:if test="${sessionScope.indexUser==null}">
+                                <img onclick="comtip()" src="images/delete.jpg" style="padding-left: 300px">
+                            </c:if>
+
                         </li>
 
                     </div>
@@ -115,37 +132,45 @@
     function songcomment() {
         alert("请先登录后，再进行评论");
     }
-   function songcom(uid,sid){
-            $.ajax({
-                url: "${pageContext.request.contextPath}/com",//需要使用绝对路径
-                type: "post",
-                data: {
-                    "key": "insertComment",
-                    "uid": uid,
-                    "sid":sid
-                },
-                dataType: "json",
-                success: function (obj) {
-                    console.log(obj);
-                }
-            })
+
+    function songdown() {
+        alert("请先登录后，再进行下载");
+    }
+    function comtip() {
+        alert("请先登录后，再进行操作");
     }
 
-    function comdelete(comtime,sid) {
+    function songcom(uid, sid) {
+        $.ajax({
+            url: "${pageContext.request.contextPath}/com",//需要使用绝对路径
+            type: "post",
+            data: {
+                "key": "insertComment",
+                "uid": uid,
+                "sid": sid
+            },
+            dataType: "json",
+            success: function (obj) {
+                console.log(obj);
+            }
+        })
+    }
+
+    function comdelete(comtime, sid) {
         $.ajax({
             url: "${pageContext.request.contextPath}/com",//需要使用绝对路径
             type: "post",
             data: {
                 "key": "deleteByComtime",
                 "comtime": comtime,
-                "sid":sid
+                "sid": sid
             },
             dataType: "json",
             success: function (obj) {
                 console.log(obj);
                 if (obj == 200) {
                     alert("你确定要删除评论吗");
-                    window.location='${pageContext.request.contextPath}/index?key=querySongDetail&sid=${song.sid}';
+                    window.location = '${pageContext.request.contextPath}/index?key=querySongDetail&sid=${song.sid}';
                 }
             }
         });
@@ -166,7 +191,8 @@
             }
         });
     }
-    function  load(songname,songurl) {
+
+    function load(songname, songurl) {
         alert("是否下载")
         $.ajax({
             url: "${pageContext.request.contextPath}/index",//需要使用绝对路径
@@ -174,16 +200,17 @@
             data: {
                 "key": "updateSongDown",
                 "songName": songname,
-                "songUrl":songurl
+                "songUrl": songurl
             },
             dataType: "json",
             success: function (obj) {
                 console.log(obj);
-                if(obj==200){
+                if (obj == 200) {
                     alert("下载成功")
-                }
-                if(obj==201){
+                } else if (obj == 201) {
                     alert("文件不存在，下载失败")
+                } else if (obj == 202) {
+                    alert("文件已经存在，不用重复下载")
                 }
             }
         });

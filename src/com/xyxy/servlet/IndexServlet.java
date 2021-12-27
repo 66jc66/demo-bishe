@@ -315,55 +315,62 @@ public class IndexServlet extends BaseServlet {
                                HttpServletResponse response) throws Exception {
         //获取要播放的歌曲id
         Integer sid = Integer.valueOf(request.getParameter("sid"));
-        Song song=new Song(sid);
+        Song song = new Song(sid);
         //调用service方法进行更改
-        int row= songService.updateSongByPlay(song);
+        int row = songService.updateSongByPlay(song);
         if (row > 0) {
             response.getWriter().write(JSON.toJSONString(200));
         }
     }
+
     //2.下载
     public void updateSongDown(HttpServletRequest request,
                                HttpServletResponse response) throws Exception {
         //获取要下载的歌曲名
         String songName = request.getParameter("songName");
         String songUrl = request.getParameter("songUrl");
-        Song song=new Song(songName);
+        Song song = new Song(songName);
         //指定要下载文件的路径
-        String path="E:\\bishe\\songurl\\";
+        String path = "E:\\bishe\\songurl\\";
         //查询文件
-        File file=new File(path+songUrl);
+        File file = new File(path + songUrl);
         //判断文件是否存在
-        if(file.exists()){
+        if (file.exists()) {
             //response.setContentType("application/x-msdownload"); //设置响应类型,此处为下载类型
             //response.setHeader("Content-Disposition", "attachment;songUrl="+java.net.URLEncoder.encode(songUrl, "UTF-8"));//以附件的形式打开
             //创建一个字节输入流
-            InputStream is=new FileInputStream(file);
+            InputStream is = new FileInputStream(file);
             //得到一个输出流
             //ServletOutputStream os=response.getOutputStream();
-            String newpath="E:\\bishe\\songdown\\"+songUrl;
-            FileOutputStream fs=new FileOutputStream(newpath);
-            byte[] bb=new byte[1024*1024];
-            int len=0;
-            while((len=is.read(bb))!=-1){
-                fs.write(bb,0,len);
+            String newpath = "E:\\bishe\\songdown\\" + songUrl;
+            File file1 = new File(newpath);
+            if (!file1.exists()) {
+                FileOutputStream fs = new FileOutputStream(newpath);
+                byte[] bb = new byte[1024 * 1024];
+                int len = 0;
+                while ((len = is.read(bb)) != -1) {
+                    fs.write(bb, 0, len);
+                }
+                is.close();
+                fs.close();
+                //调用service方法进行更改
+                songService.updateSongByDown(song);
+                response.getWriter().write(JSON.toJSONString(200));
+            } else {
+                if(file1.exists()){
+                    response.getWriter().write(JSON.toJSONString(202));
+                }
             }
-            is.close();
-            fs.close();
-            //调用service方法进行更改
-            songService.updateSongByDown(song);
-            response.getWriter().write(JSON.toJSONString(200));
-        }else{
+        } else {
             response.getWriter().write(JSON.toJSONString(201));
         }
-
     }
 
     //获取下载好的数据
     public void queryAllDownLoad(HttpServletRequest request,
                                  HttpServletResponse response) throws Exception {
         List<Song> songDown = songService.queryAllDownLoad();
-        HttpSession session=request.getSession();
+        HttpSession session = request.getSession();
         session.setAttribute("songDown", songDown);
         for (Song song : songDown) {
             //遍历集合获取歌曲id
@@ -372,8 +379,8 @@ public class IndexServlet extends BaseServlet {
             Cd cd = cdService.findCdById(cdId);
             song.setCd(cd);
         }
-        if (songDown!=null){
-            request.getRequestDispatcher("index/my_music.jsp").forward(request,response);
+        if (songDown != null) {
+            request.getRequestDispatcher("index/my_music.jsp").forward(request, response);
         }
     }
 }
