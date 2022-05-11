@@ -201,4 +201,13 @@ public class SongService {
 
     //获取下载好的数据
     public List<Song> queryAllDownLoad() { return songDao.queryAllDownLoad();   }
+
+    public List<Song> checkBySingerName(String singerName) {
+        return songDao.checkAllBySingerName(singerName);
+    }
+
+    public List<Song> checkByCId(Integer cid) {
+        return songDao.checkByCid(cid);
+    }
+
 }

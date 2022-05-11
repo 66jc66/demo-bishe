@@ -69,7 +69,7 @@
                     <c:forEach items="${songDown}" var="song" varStatus="sg">
                         <tr>
                             <td style="text-align: center">${sg.count}</td>
-                            <td>${song.songName}</td>
+                            <td><a href="${pageContext.request.contextPath}/index?key=querySongDetail&sid=${song.sid}">${song.songName}</a></td>
                             <td>${song.songTime}</td>
                             <td>${song.singerName}</td>
                             <td>${song.cd.cdName}</td>

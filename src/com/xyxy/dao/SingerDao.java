@@ -51,6 +51,8 @@ public interface SingerDao {
     List<Singer> queryManSinger();
     //查询华语女歌手歌手并显示
     List<Singer> queryWomanSinger();
+    //查询华语组合歌手并显示
+    List<Singer> queryZhSinger();
     //根据歌手首字母来查询歌手
     List<Singer>  querySingerByCode(String firstCode);
 }

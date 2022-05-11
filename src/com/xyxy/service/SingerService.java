@@ -138,6 +138,10 @@ public class SingerService {
     public List<Singer> queryWomanSinger() {
         return singerDao.queryWomanSinger();
     }
+    //查询华语组合歌手并显示
+    public List<Singer> queryZhSinger() {
+        return singerDao.queryZhSinger();
+    }
     //根据歌手首字母来查询歌手
     public List<Singer>  querySingerByCode(String firstCode) {
         return singerDao.querySingerByCode(firstCode);

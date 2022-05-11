@@ -161,9 +161,26 @@ public class SongDaoImpl extends BaseDao<Song> implements SongDao {
 
     @Override
     public List<Song> queryAllDownLoad() {
-        String sql="SELECT * FROM song WHERE downloadCount>1;";
+        String sql="SELECT * FROM song WHERE downloadCount>0;";
         List<Song> songDown = getBeanList(sql);
         return songDown;
+    }
+
+    //根据歌手查询歌曲
+    @Override
+    public List<Song> checkAllBySingerName(String singerName) {
+            String sql = "SELECT * FROM song WHERE singerName=? ";
+        List<Song> song = getBeanList(sql,singerName);
+        return song;
+
+    }
+
+    //根据专辑查询歌曲
+    @Override
+    public List<Song> checkByCid(Integer cid) {
+        String sql = "SELECT * FROM song WHERE cdId=? ";
+        List<Song> song = getBeanList(sql,cid);
+        return song;
     }
 
     //获取下载排行榜

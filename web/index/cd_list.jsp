@@ -79,10 +79,12 @@
             <c:forEach items="${cdList}" var="cd" varStatus="v">
                 <div>
                     <div style="width: 220px ;height: 200px; float: left;margin:0 30px 10px 30px ;">
-                        <img src="/imgs/${cd.cphoto}" style="width: 220px ;height: 160px;">
+                        <a href="${pageContext.request.contextPath}/index?key=queryCdDetail&cid=${cd.cid}"><img src="/imgs/${cd.cphoto}" style="width: 220px ;height: 160px;">
                         <div style="width: 220px ;height: 20px; text-align: center; float: left;">
                             <p style="font-size: 15px">${cd.cdName}-${cd.singer}</p></div>
+                        </a>
                     </div>
+
                 </div>
             </c:forEach>
         </div>

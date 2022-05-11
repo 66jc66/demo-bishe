@@ -92,7 +92,9 @@
                 <li>
                     <a href="${pageContext.request.contextPath}/index?key=queryWomanSinger">华语女歌手</a>
                 </li>
-                <li>华语组合</li>
+                <li>
+                    <a href="${pageContext.request.contextPath}/index?key=queryZhSinger">华语组合</a>
+                </li>
             </ul>
         </div>
         <div>
@@ -149,8 +151,8 @@
             <c:forEach items="${singerList}" var="singer" varStatus="s">
                 <div>
                     <div style=" width: 160px ;height: 200px;float: left;margin:30px ;">
-                        <img src="/imgs/${singer.photo}"
-                             style="width: 160px ;height: 160px; border-radius: 50%;">
+                        <a href="${pageContext.request.contextPath}/index?key=querySingerDetail&singerName=${singer.singerName}"><img src="/imgs/${singer.photo}"
+                             style="width: 160px ;height: 160px; border-radius: 50%;"></a>
                         <div style="width: 160px ;height: 20px; text-align: center; float: left;">
                             <p> ${singer.singerName}</p></div>
                     </div>

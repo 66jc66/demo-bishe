@@ -88,4 +88,8 @@ public interface SongDao {
 
     //获取下载好的数据
     List<Song> queryAllDownLoad();
+
+    List<Song> checkAllBySingerName(String singerName);
+
+    List<Song> checkByCid(Integer cid);
 }

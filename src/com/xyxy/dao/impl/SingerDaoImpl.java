@@ -83,6 +83,13 @@ public class SingerDaoImpl extends BaseDao<Singer> implements SingerDao {
         List<Singer> beanList = getBeanList(sql);
         return beanList;
     }
+    //查询华语组合歌手并显示
+    @Override
+    public List<Singer> queryZhSinger() {
+        String sql = "SELECT * FROM singer WHERE typeName='华语组合'";
+        List<Singer> beanList = getBeanList(sql);
+        return beanList;
+    }
 
     @Override
     public List<Singer>  querySingerByCode(String firstCode) {

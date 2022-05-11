@@ -107,6 +107,40 @@ public class IndexServlet extends BaseServlet {
         response.sendRedirect("index/song_detail.jsp");
     }
 
+    //点击歌手会跳到歌手详情页面
+    public void querySingerDetail(HttpServletRequest request,
+                                  HttpServletResponse response) throws Exception {
+        //获取歌手的姓名
+        String singerName =request.getParameter("singerName");
+        //调用service方法查询符合的歌曲
+        List<Song> song = songService.checkBySingerName(singerName);
+        Singer singer=singerService.checkBySingerName(singerName);
+        //将查询到的歌曲传入作用域中
+        HttpSession session = request.getSession();
+        session.setAttribute("songs", song);
+        session.setAttribute("singers", singer);
+        //跳转到详情页面
+        response.sendRedirect("index/singer_detail.jsp");
+    }
+
+    //点击专辑会跳到专辑详情页面
+    public void queryCdDetail(HttpServletRequest request,
+                                  HttpServletResponse response) throws Exception {
+        //获取专辑id
+        Integer cid = Integer.valueOf(request.getParameter("cid"));
+        //调用service方法查询符合的歌曲
+        List<Song> song = songService.checkByCId(cid) ;
+        //将查询到的歌曲传入作用域中
+        HttpSession session = request.getSession();
+        session.setAttribute("songcds", song);
+        //调用service方法查询符合的歌曲
+        Cd cd = cdService.findCdById(cid);
+        //将查询到的专辑传入作用域中
+        session.setAttribute("Cd", cd);
+        //跳转到详情页面
+        response.sendRedirect("index/cd_detail.jsp");
+    }
+
     //根据歌名查询相关的歌曲
     public void checkBySong(HttpServletRequest request,
                             HttpServletResponse response) throws Exception {
@@ -172,6 +206,16 @@ public class IndexServlet extends BaseServlet {
         request.getRequestDispatcher("index/singer_list.jsp").forward(request, response);
     }
 
+    //查询华语女歌手歌手并显示
+    public void queryZhSinger(HttpServletRequest request,
+                                 HttpServletResponse response) throws Exception {
+        //调用service方法查询所有华语女歌手
+        List<Singer> singerList = singerService.queryZhSinger();
+        //将查到的数据存入作用域中
+        request.setAttribute("singerList", singerList);
+        //跳到歌手展示页面
+        request.getRequestDispatcher("index/singer_list.jsp").forward(request, response);
+    }
     //根据歌手首字母来查询歌手
     public void queryByFirstCode(HttpServletRequest request,
                                  HttpServletResponse response) throws Exception {

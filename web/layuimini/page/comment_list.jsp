@@ -63,7 +63,7 @@
                 {type: "checkbox", width: 50},
                 {field: 'comid', width: 80, title: 'ID', sort: true},
                 {field: 'uid', width: 80, title: '用户名'},
-                {field: 'sid', width: 80, title: '歌曲名'},
+                {field: 'sid', width: 80, title: '歌曲ID'},
                 {field: 'comtext', width: 200, title: '评论'},
                 {field: 'comtime', width: 160, title: '时间',sort: true},
                 {title: '操作', minWidth: 100, toolbar: '#currentTableBar', align: "center"}
