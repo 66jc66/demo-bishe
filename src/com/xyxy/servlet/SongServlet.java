@@ -32,6 +32,7 @@ public class SongServlet extends BaseServlet {
             String cdidStr = request.getParameter("cdId");
             Integer cdId=Integer.valueOf(cdidStr);
             String language = request.getParameter("language");
+            String geci = request.getParameter("geci");
             String faDate = request.getParameter("faDate");
             String songTime =request.getParameter("songTime");
             //设置目标服务器路径
@@ -45,7 +46,7 @@ public class SongServlet extends BaseServlet {
             String songUrl=fileName;
             //将文件上传到目标服务器:目前文件的路径及文件名称
             part.write(songUrl1);
-            Song song = new Song(songName, singerName, cdId, language, faDate, songUrl, songTime);
+            Song song = new Song(songName, singerName, cdId, language,geci, faDate, songUrl, songTime);
             int row = songService.insertSong(song);
             if(row>0){
                 //增加成功继续添加
@@ -113,6 +114,7 @@ public class SongServlet extends BaseServlet {
         String singerName = request.getParameter("singerName");
         Integer cdId = Integer.valueOf(request.getParameter("cdId"));
         String language = request.getParameter("language");
+        String geci = request.getParameter("geci");
         String faDate = request.getParameter("faDate");
         String  songTime =request.getParameter("songTime");
         Integer downloadCount = Integer.valueOf(request.getParameter("downloadCount"));
@@ -123,12 +125,12 @@ public class SongServlet extends BaseServlet {
         long len = part.getSize();
         if (len == 0) {//判断是否上传了文件
             //将歌曲参数封装成对象
-            Song song = new Song( sid,  discussNum, songName,singerName, cdId,  playCount,  downloadCount,  language, faDate,songTime);
+            Song song = new Song( sid,  discussNum, songName,singerName, cdId,  playCount,  downloadCount,  language, geci, faDate,songTime);
             int row = songService.updateSong(song);
         } else {
             String songUrl = UploadUtil.uploadFile(part);
             //将歌曲参数封装成对象
-            Song song = new Song( sid,discussNum,  singerName,  cdId,  playCount,  downloadCount,  songName,  language,  faDate,  songUrl,  songTime);
+            Song song = new Song( sid,discussNum,  singerName,  cdId,  playCount,  downloadCount,  songName,  language, geci, faDate,  songUrl,  songTime);
             int row =  songService.updateSong(song);
         }
     }

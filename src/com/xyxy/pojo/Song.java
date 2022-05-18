@@ -1,5 +1,7 @@
 package com.xyxy.pojo;
 
+import org.w3c.dom.Text;
+
 public class Song {
     private Integer sid;
     private Integer discussNum;
@@ -12,6 +14,7 @@ public class Song {
     private String faDate;
     private String songUrl;
     private String songTime;
+    private String  songgc;
 
 
     private Cd cd;
@@ -34,7 +37,7 @@ public class Song {
         this.songName = songName;
     }
     //当文件上传新的时候的构造函数
-    public Song(Integer sid, Integer discussNum, String singerName, Integer cdId, Integer playCount, Integer downloadCount, String songName, String language, String faDate, String songUrl, String songTime) {
+    public Song(Integer sid, Integer discussNum, String singerName, Integer cdId, Integer playCount, Integer downloadCount, String songName, String language,String geci, String faDate, String songUrl, String songTime) {
         this.sid = sid;
         this.discussNum = discussNum;
         this.singerName = singerName;
@@ -43,24 +46,26 @@ public class Song {
         this.downloadCount = downloadCount;
         this.songName = songName;
         this.language = language;
+        this.songgc = geci;
         this.faDate = faDate;
         this.songUrl = songUrl;
         this.songTime = songTime;
     }
 
     //增加的song构造函数
-    public Song(String songName, String singerName, Integer cdId, String language, String faDate, String songUrl, String songTime) {
+    public Song(String songName, String singerName, Integer cdId, String language,String geci, String faDate, String songUrl, String songTime) {
         this.songName = songName;
         this.singerName = singerName;
         this.cdId = cdId;
         this.language = language;
+        this.songgc = geci;
         this.faDate = faDate;
         this.songUrl = songUrl;
         this.songTime = songTime;
     }
 
     //当文件没有进行修改时改的构造函数
-    public Song(Integer sid, Integer discussNum, String songName, String singerName, Integer cdId, Integer playCount, Integer downloadCount, String language, String faDate, String songTime) {
+    public Song(Integer sid, Integer discussNum, String songName, String singerName, Integer cdId, Integer playCount, Integer downloadCount, String language, String geci,String faDate, String songTime) {
         this.sid = sid;
         this.discussNum = discussNum;
         this.singerName = singerName;
@@ -69,6 +74,7 @@ public class Song {
         this.downloadCount = downloadCount;
         this.songName = songName;
         this.language = language;
+        this.songgc = geci;
         this.faDate = faDate;
         this.songTime = songTime;
     }
@@ -88,7 +94,17 @@ public class Song {
                 ", faDate='" + faDate + '\'' +
                 ", songUrl='" + songUrl + '\'' +
                 ", songTime='" + songTime + '\'' +
+                ", songgc='" + songgc + '\'' +
+                ", cd=" + cd +
                 '}';
+    }
+
+    public String getSonggc() {
+        return songgc;
+    }
+
+    public void setSonggc(String songgc) {
+        this.songgc = songgc;
     }
 
     public Integer getSid() {

@@ -19,12 +19,13 @@ public class SongDaoImpl extends BaseDao<Song> implements SongDao {
                 "  `singerName`,\n" +
                 "  `cdId`,\n" +
                 "  `language`,\n" +
+                "  `songgc`,\n" +
                 "  `faDate`,\n" +
                 "  `songUrl`,\n" +
                 "  `songTime`\n" +
                 ") \n" +
                 "VALUES (?,?,?,?,?,?,?)";
-        int row = update(sql, s.getSongName(), s.getSingerName(), s.getCdId(), s.getLanguage(), s.getFaDate(), s.getSongUrl(), s.getSongTime());
+        int row = update(sql, s.getSongName(), s.getSingerName(), s.getCdId(), s.getLanguage(),s.getSonggc(), s.getFaDate(), s.getSongUrl(), s.getSongTime());
         return row;
     }
 
@@ -226,13 +227,14 @@ public class SongDaoImpl extends BaseDao<Song> implements SongDao {
                     "  `singerName` = ?,\n" +
                     "  `cdId` = ?,\n" +
                     "  `language` = ?,\n" +
+                    "  `songgc` = ?,\n" +
                     "  `playCount` = ?,\n" +
                     "  `downloadCount` = ?,\n" +
                     "  `faDate` = ?,\n" +
                     "  `songTime` = ?,\n" +
                     "  `discussNum` = ?\n" +
                     "WHERE `sid` = ? ;";
-            row = update(sql, s.getSongName(), s.getSingerName(), s.getCdId(), s.getLanguage(), s.getPlayCount(), s.getDownloadCount(), s.getFaDate()
+            row = update(sql, s.getSongName(), s.getSingerName(), s.getCdId(), s.getLanguage(), s.getSonggc(),s.getPlayCount(), s.getDownloadCount(), s.getFaDate()
                     , s.getSongTime(), s.getDiscussNum(), s.getSid());
         } else {
             String sql = "UPDATE  song  SET \n" +
@@ -240,6 +242,7 @@ public class SongDaoImpl extends BaseDao<Song> implements SongDao {
                     "  `singerName` = ?,\n" +
                     "  `cdId` = ?,\n" +
                     "  `language` = ?,\n" +
+                    "  `songgc` = ?,\n" +
                     "  `playCount` = ?,\n" +
                     "  `downloadCount` = ?,\n" +
                     "  `faDate` = ?,\n" +
@@ -247,7 +250,7 @@ public class SongDaoImpl extends BaseDao<Song> implements SongDao {
                     "  `songTime` = ?,\n" +
                     "  `discussNum` = ?\n" +
                     "WHERE `sid` = ? ;";
-            row = update(sql, s.getSongName(), s.getSingerName(), s.getCdId(), s.getLanguage(), s.getPlayCount(), s.getDownloadCount(), s.getFaDate()
+            row = update(sql, s.getSongName(), s.getSingerName(), s.getCdId(), s.getLanguage(),s.getSonggc(), s.getPlayCount(), s.getDownloadCount(), s.getFaDate()
                     , s.getSongUrl(), s.getSongTime(), s.getDiscussNum(), s.getSid());
         }
 

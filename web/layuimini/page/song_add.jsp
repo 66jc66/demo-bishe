@@ -55,6 +55,13 @@
             </div>
         </div>
         <div class="layui-form-item">
+            <label class="layui-form-label required">歌词</label>
+            <div class="layui-input-block">
+                <input type="text" name="geci" lay-verify="required" lay-reqtext="歌词不能为空" placeholder="请输入歌词"
+                       value="" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
             <label class="layui-form-label">发行时间</label>
             <div class="layui-input-block">
                 <input type="datetime" name="faDate" placeholder="请输入发行时间" value="" class="layui-input">
